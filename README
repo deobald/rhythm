@@ -1,17 +1,13 @@
 # rhythm
 
-FIXME: write description
+An attempt to teach myself a little clojure by writing a game to learn clojure.
 
 ## Usage
 
-FIXME: write
-
-## Installation
-
-FIXME: write
+For now, uncomment the last two lines in 'project.clj' and run 'lein repl'.
 
 ## License
 
-Copyright (C) 2010 FIXME
+Copyright (C) 2010 Steven Deobald
 
 Distributed under the Eclipse Public License, the same as Clojure.
