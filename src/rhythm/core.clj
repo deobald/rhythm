@@ -2,7 +2,7 @@
   (:use clojure.contrib.def))
 
 (defn welcome []
-  (println "To talk to me, type (answer XYZ), where XYZ is your answer to the question.")
+  (println "To answer a question, type (answer XYZ), where XYZ is your answer to the question.")
   (println "You can use this for short: (a XYZ)")
   (println "My questions will appear in quotes.")
   (println "A list begins with an open-parenthesis and ends with a close-parenthesis."))
