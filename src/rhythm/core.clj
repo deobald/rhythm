@@ -11,22 +11,28 @@
 (def number (ref 0))
 
 (defmacro s [form]
-  (dosync (ref-set next-answer `~form))
-  nil)
-
-(defmacro check [attempt]
-  (= @next-answer `~attempt))
+  `(dosync (ref-set next-answer '~form)))
 
 (defn question-1 []
   (s ())
   "1. What is an empty list?")
-  
+
+(defn question-2 []
+  (s (+ 2 3))
+  (println "Functions are called but placing them first in a list: (FUNCTION parameter1 parameter2 ...)")
+  (println "Functions operate on any parameters given to them.")
+  "2. How might you add 2 and 3 together?")
+
+(defn no-more-questions []
+  "Sorry, out of questions!")
+
 (defn question [n]
   (dosync (ref-set number n))
   (println "\n")
   (condp = n
     1 question-1
-    "Sorry, out of questions!"))
+    2 question-2
+    no-more-questions))
 
 (defn start []
   (welcome)
@@ -35,10 +41,11 @@
 (defmacro answer [form]
   (if (= @next-answer `~form)
     (do
-      (println "Correct!")
-      (question (+ 1 @number)))
+      (let [next-question (+ 1 @number)]
+        (println (str "Correct! On to question " next-question))
+        ((question next-question))))
     (do
-      (println "Sorry, not quite.")
-      (question @number))))
+      (println (str "Sorry, not quite. Try question " @number " again."))
+      ((question @number)))))
 
 (defalias a answer)
